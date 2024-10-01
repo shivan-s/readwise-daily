@@ -97,7 +97,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		highlight := getHighlight()
 		pterm.DefaultHeader.Println(highlight.Title)
-		pterm.DefaultCenter.Println(highlight.Text)
+		pterm.DefaultBasicText.Println(highlight.Text)
 		fmt.Println(highlight.Author)
 	},
 }
