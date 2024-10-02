@@ -96,12 +96,15 @@ var rootCmd = &cobra.Command{
 	Short: "readwise-daily print daily highlights to the command line",
 	Run: func(cmd *cobra.Command, args []string) {
 		highlight := getHighlight()
-		styleTitle := lipgloss.NewStyle().Padding(2).Align(lipgloss.Center)
-		style := lipgloss.NewStyle().Bold(true)
-		// pterm.DefaultHeader.Println(highlight.Title)
-		// pterm.DefaultBasicText.Println(highlight.Text)
+		styleTitle := lipgloss.NewStyle().Italic(true)
+		styleAuthor := lipgloss.NewStyle().Bold(true)
+		styleText := lipgloss.NewStyle().
+			MarginLeft(2).
+			MarginRight(2).
+			AlignHorizontal(lipgloss.Center)
+		fmt.Println(styleText.Render(highlight.Text))
 		fmt.Println(styleTitle.Render(highlight.Title))
-		fmt.Println(style.Render(highlight.Author))
+		fmt.Println(styleAuthor.Render(highlight.Author))
 	},
 }
 
