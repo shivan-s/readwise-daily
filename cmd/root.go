@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/log"
-	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -96,9 +96,12 @@ var rootCmd = &cobra.Command{
 	Short: "readwise-daily print daily highlights to the command line",
 	Run: func(cmd *cobra.Command, args []string) {
 		highlight := getHighlight()
-		pterm.DefaultHeader.Println(highlight.Title)
-		pterm.DefaultBasicText.Println(highlight.Text)
-		fmt.Println(highlight.Author)
+		styleTitle := lipgloss.NewStyle().Padding(2).Align(lipgloss.Center)
+		style := lipgloss.NewStyle().Bold(true)
+		// pterm.DefaultHeader.Println(highlight.Title)
+		// pterm.DefaultBasicText.Println(highlight.Text)
+		fmt.Println(styleTitle.Render(highlight.Title))
+		fmt.Println(style.Render(highlight.Author))
 	},
 }
 
